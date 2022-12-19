@@ -8,10 +8,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationForce = 1f;
 
     Rigidbody playerRigidbody;
+    AudioSource rocketEngineSFX;
+    bool isPlaying;
+    
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        rocketEngineSFX = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,6 +29,15 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             playerRigidbody.AddRelativeForce(Vector3.up * thrustForce * Time.deltaTime,ForceMode.Impulse);
+
+            if (!rocketEngineSFX.isPlaying)
+            {
+                rocketEngineSFX.Play();
+            }
+        }
+        else
+        {
+            rocketEngineSFX.Stop();
         }
     }
 
