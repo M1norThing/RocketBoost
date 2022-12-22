@@ -9,8 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody playerRigidbody;
     AudioSource rocketEngineSFX;
-    bool isPlaying;
-    
+      
 
     void Start()
     {
