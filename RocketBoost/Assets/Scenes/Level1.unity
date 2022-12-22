@@ -301,23 +301,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 22.026, y: 0, z: 0}
---- !u!1 &1955764151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1929753904878707968, guid: c285fc508b2f84a568449e0f0145b448, type: 3}
-  m_PrefabInstance: {fileID: 1929753905155385094}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1955764159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955764151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb932b4a79c24ba4b9c864df4d48087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2144597998
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1955764159, guid: c285fc508b2f84a568449e0f0145b448, type: 3}
+      propertyPath: resetDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1929753904878707968, guid: c285fc508b2f84a568449e0f0145b448, type: 3}
       propertyPath: m_Name
       value: Player
@@ -469,6 +456,10 @@ PrefabInstance:
     - target: {fileID: 1929753904878707980, guid: c285fc508b2f84a568449e0f0145b448, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929753904878707981, guid: c285fc508b2f84a568449e0f0145b448, type: 3}
+      propertyPath: rotationForce
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c285fc508b2f84a568449e0f0145b448, type: 3}
@@ -603,6 +594,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7046712360662328091, guid: 9c97088c088384410909e7af378b5d07, type: 3}
       propertyPath: m_Name
+      value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046712360662328091, guid: 9c97088c088384410909e7af378b5d07, type: 3}
+      propertyPath: m_TagString
       value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 7046712360662328095, guid: 9c97088c088384410909e7af378b5d07, type: 3}

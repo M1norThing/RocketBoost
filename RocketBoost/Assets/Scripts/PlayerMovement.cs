@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float thrustForce = 1f;
     [SerializeField] float rotationForce = 1f;
+    [SerializeField] AudioClip rocketEngine;
 
     Rigidbody playerRigidbody;
     AudioSource rocketEngineSFX;
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!rocketEngineSFX.isPlaying)
             {
-                rocketEngineSFX.Play();
+                rocketEngineSFX.PlayOneShot(rocketEngine);
             }
         }
         else
