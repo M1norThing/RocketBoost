@@ -6,12 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float thrustForce = 1f;
     [SerializeField] float rotationForce = 1f;
+
     [SerializeField] AudioClip rocketEngine;
+
+    [SerializeField] ParticleSystem mainEngine;
+    [SerializeField] ParticleSystem rightEngine;
+    [SerializeField] ParticleSystem leftEngine;
+
 
     Rigidbody playerRigidbody;
     AudioSource rocketEngineSFX;
       
-
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -28,30 +33,75 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            playerRigidbody.AddRelativeForce(Vector3.up * thrustForce * Time.deltaTime,ForceMode.Impulse);
-
-            if (!rocketEngineSFX.isPlaying)
-            {
-                rocketEngineSFX.PlayOneShot(rocketEngine);
-            }
+            Thrusting();
         }
         else
         {
-            rocketEngineSFX.Stop();
+            StopEngine();
         }
     }
+
+    private void Thrusting()
+    {
+        playerRigidbody.AddRelativeForce(Vector3.up * thrustForce * Time.deltaTime, ForceMode.Impulse);
+
+        if (!rocketEngineSFX.isPlaying)
+        {
+            rocketEngineSFX.PlayOneShot(rocketEngine);
+        }
+        if (!mainEngine.isPlaying)
+        {
+            mainEngine.Play();
+        }
+    }
+
+    void StopEngine()
+    {
+        rocketEngineSFX.Stop();
+        mainEngine.Stop();
+    }
+
 
     void rocketRotation()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationForce);
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationForce);
+            RotateRight();
+        }
+        else
+        {
+            StopSideEngines();
         }
     }
+
+    private void RotateLeft()
+    {
+        ApplyRotation(rotationForce);
+        if (!leftEngine.isPlaying)
+        {
+            leftEngine.Play();
+        }
+    }
+
+    private void RotateRight()
+    {
+        ApplyRotation(-rotationForce);
+        if (!rightEngine.isPlaying)
+        {
+            rightEngine.Play();
+        }
+    }
+
+    void StopSideEngines()
+    {
+        leftEngine.Stop();
+        rightEngine.Stop();
+    }
+
 
     private void ApplyRotation(float rotationValue)
     {

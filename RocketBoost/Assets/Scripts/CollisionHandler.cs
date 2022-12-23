@@ -7,8 +7,12 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] float resetDelay = 1f;
+
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip finishSFX;
+
+    [SerializeField] ParticleSystem crashParticle;
+    [SerializeField] ParticleSystem finishParticle;
 
     AudioSource audioSource;
 
@@ -45,30 +49,14 @@ public class CollisionHandler : MonoBehaviour
 
     private void NextLevel()
     {
-        // TODO particle effect
         isTransitioning = true;
 
         audioSource.Stop();
         audioSource.PlayOneShot(finishSFX);
+        finishParticle.Play();
+
         GetComponent<PlayerMovement>().enabled = false;
         Invoke("LoadNextLevel", resetDelay);
-    }
-
-    void PlayerCrash()
-    {
-        // TODO particle effect
-        isTransitioning = true;
-
-        audioSource.Stop();
-        audioSource.PlayOneShot(crashSFX);
-        GetComponent<PlayerMovement>().enabled = false;
-        Invoke("ReloadScene",resetDelay);
-    }
-
-    void ReloadScene()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
     }
 
     void LoadNextLevel()
@@ -81,4 +69,22 @@ public class CollisionHandler : MonoBehaviour
         }
         SceneManager.LoadScene(nextSceneIndex);
     }
+
+    void PlayerCrash()
+    {
+        isTransitioning = true;
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashSFX);
+        crashParticle.Play();
+
+        GetComponent<PlayerMovement>().enabled = false;
+        Invoke("ReloadScene",resetDelay);
+    }
+
+    void ReloadScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    } 
 }
